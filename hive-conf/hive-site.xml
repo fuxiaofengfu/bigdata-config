@@ -1,0 +1,89 @@
+<configuration>
+	<!-- 数据库 start -->
+	<property>
+	  <name>javax.jdo.option.ConnectionURL</name>
+	  <value>jdbc:mysql://nn2.hadoop:3306/hive_meta</value>
+	  <description>mysql连接</description>
+	</property>
+
+	<property>
+	  <name>javax.jdo.option.ConnectionDriverName</name>
+	  <value>com.mysql.jdbc.Driver</value>
+	  <description>mysql驱动</description>
+	</property>
+
+	<property>
+	  <name>javax.jdo.option.ConnectionUserName</name>
+	  <value>hive</value>
+	  <description>数据库使用用户名</description>
+	</property>
+
+	<property>
+	  <name>javax.jdo.option.ConnectionPassword</name>
+	  <value>12345678</value>
+	  <description>数据库密码</description>
+	</property>
+	<!-- 数据库 end -->
+	<!-- HDFS start -->
+	<property> 
+	  <name>hive.metastore.warehouse.dir</name>
+	  <value>/hive/warehouse</value>
+	  <description>hive使用的HDFS目录</description>
+	</property>
+	<!-- HDFS end -->
+	<!-- metastore start 在客户端使用时，mysql连接和metastore同时出现在配置文件中，客户端会选择使用metastore -->
+	<property>
+	  <name>hive.metastore.schema.verification</name>
+	  <value>false</value>
+	</property>
+
+	<property>
+	  <name>hive.metastore.uris</name>
+	  <value>thrift://nn2.hadoop:9083</value>
+	</property>
+	<!-- metastore end -->
+	<!-- hiveserver start -->
+	<property>
+	  <name>hive.server2.authentication</name>
+	  <value>NONE</value>
+	</property>
+
+	<property>
+	  <name>hive.server2.thrift.bind.host</name>
+	  <value>nn2.hadoop</value>
+	  <description>hive开启的thriftServer地址</description>
+	</property>
+
+	<property>
+	  <name>hive.server2.thrift.port</name>
+	  <value>10000</value>
+	  <description>hive开启的thriftServer端口</description>
+	</property>
+
+	<property>
+	  <name>hive.server2.enable.doAs</name>
+	  <value>true</value>
+	</property>
+	<!-- hiveserver end -->
+	<!-- 其它 start -->
+	<property>
+	  <name>datanucleus.autoCreateSchema</name>
+	  <value>false</value>
+	</property>
+
+	<property>
+	  <name>datanucleus.fixedDatastore</name>
+	  <value>true</value>
+	</property>
+
+	<property>
+	  <name>datanucleus.autoStartMechanism</name> 
+	  <value>SchemaTable</value>
+	</property>
+
+	<property> 
+	  <name>hive.cli.print.current.db</name>
+	  <value>true</value>
+	</property>
+	<!-- 其它 end -->
+</configuration>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<allocations>	
+	<queue name="hainiu">
+		<minResources>512 mb,1 vcores</minResources>
+		<maxResources>215040 mb,252 vcores</maxResources>
+		<maxRunningApps>50</maxRunningApps>
+		<weight>1.0</weight>
+		<schedulingPolicy>fair</schedulingPolicy>
+		<aclSubmitApps>hainiu</aclSubmitApps>
+		<aclAdministerApps>hainiu</aclAdministerApps>
+	</queue>
+
+	<queue name="default">
+		<weight>1.0</weight>
+		<aclSubmitApps>*</aclSubmitApps>
+		<aclAdministerApps>*</aclAdministerApps>
+	</queue>
+	
+	<!-- user节点只有一个子节点 -->
+	<user name="root">
+		<maxRunningApps>500</maxRunningApps>
+	</user>
+	<!-- 用户的maxRunningJobs属性的默认值 -->
+	<userMaxAppsDefault>50</userMaxAppsDefault>
+	<!-- 队列的schedulingMode属性的默认值 默认是fair-->
+	<defaultQueueSchedulingPolicy>fair</defaultQueueSchedulingPolicy>
+	<!--  一个队列在共享资源量低于其最小share时，开始从其它队列抢占资源前的等待时间，以秒计算 -->
+	<fairSharePreemptionTimeout>60</fairSharePreemptionTimeout>
+	<!--  一个队列在共享资源量低于其最小share时，开始从其它队列抢占资源前的等待时间，以秒计算 -->
+	<defaultMinSharePreemptionTimeout>60</defaultMinSharePreemptionTimeout>
+	
+	<queuePlacementPolicy>
+		<rule name="specified" create="false" />
+		<rule name="user" create="false" />
+		<rule name="reject" />
+	</queuePlacementPolicy>
+</allocations>

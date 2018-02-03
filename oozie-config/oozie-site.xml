@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<configuration>
+
+<property>
+    <name>oozie.service.JPAService.jdbc.driver</name>
+    <value>com.mysql.jdbc.Driver</value>
+    <description>
+        JDBC driver class.
+    </description>
+</property>
+<property>
+    <name>oozie.service.JPAService.jdbc.url</name>
+    <value>jdbc:mysql://nn2.hadoop:3306/oozie</value>
+    <description>
+        JDBC URL.
+    </description>
+</property>
+<property>
+    <name>oozie.service.JPAService.jdbc.username</name>
+    <value>oozie</value>
+    <description>
+        DB user name.
+    </description>
+</property>
+<property>
+    <name>oozie.service.JPAService.jdbc.password</name>
+    <value>12345678</value>
+    <description>
+        DB user password.
+        IMPORTANT: if password is emtpy leave a 1 space string, the service trims the value,
+        if empty Configuration assumes it is NULL.
+    </description>
+</property>
+<!--设置Hadoop的配置文件的路径-->
+<property>
+    <name>oozie.service.HadoopAccessorService.hadoop.configurations</name>
+    <value>*=/usr/local/hadoop/etc/hadoop</value>
+    <description>
+        Comma separated AUTHORITY=HADOOP_CONF_DIR, where AUTHORITY is the HOST:PORT of
+        the Hadoop service (JobTracker, YARN, HDFS). The wildcard '*' configuration is
+        used when there is no exact match for an authority. The HADOOP_CONF_DIR contains
+        the relevant Hadoop *-site.xml files. If the path is relative is looked within
+        the Oozie configuration directory; though the path can be absolute (i.e. to point
+        to Hadoop client conf/ directories in the local filesystem.
+    </description>
+</property>
+<!--设置Spark的配置文件的路径-->
+<!--
+<property>
+    <name>oozie.service.SparkConfigurationService.spark.configurations</name>
+    <value>*=/usr/local/spark/conf</value>
+    <description>
+        Comma separated AUTHORITY=SPARK_CONF_DIR, where AUTHORITY is the HOST:PORT of
+        the ResourceManager of a YARN cluster. The wildcard '*' configuration is
+        used when there is no exact match for an authority. The SPARK_CONF_DIR contains
+        the relevant spark-defaults.conf properties file. If the path is relative is looked within
+        the Oozie configuration directory; though the path can be absolute.  This is only used
+        when the Spark master is set to either "yarn-client" or "yarn-cluster".
+    </description>
+</property>
+-->
+<!--
+     设置系统库存放在hdfs中，注意只有在job.properties中将设置oozie.use.system.libpath=true才会引用系统库
+。注意，下面ns1是namenode的逻辑名称，根据自己集群的情况进行更改即可-->
+<property>
+    <name>oozie.service.WorkflowAppService.system.libpath</name>
+    <value>hdfs://ns1/user/${user.name}/share/lib</value>
+    <description>
+        System library path to use for workflow applications.
+        This path is added to workflow application if their job properties sets
+        the property 'oozie.use.system.libpath' to true.
+    </description>
+</property>
+<!--<property>
+    <name>oozie.processing.timezone</name>
+    <value>GMT+0800</value>
+</property>
+-->
+<!--
+<property>
+	<name>oozie.service.coord.check.maximum.frequency</name>
+	<value>false</value>
+</property>
+-->
+</configuration>
